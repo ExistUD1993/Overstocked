@@ -2,6 +2,7 @@
 using GorillaExtensions;
 using GorillaNetworking;
 using GorillaNetworking.Store;
+using HarmonyLib;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Overstocked;
 [BepInPlugin(PluginInfo.Guid, PluginInfo.Name, PluginInfo.Version)]
 public class Plugin : BaseUnityPlugin
 {
+    private static Plugin _instance = null!;
     private static Transform? _mirrorSofa;
     private DynamicCosmeticStand? _defaultStand;
     private CosmeticsController.CosmeticCategory _currentSelectedCategory = (CosmeticsController.CosmeticCategory)1;
@@ -26,6 +28,8 @@ public class Plugin : BaseUnityPlugin
 
     private void Awake()
     {
+        _instance = this;
+        new Harmony(PluginInfo.Guid).PatchAll();
         SceneManager.sceneLoaded += OnSceneLoaded;
         GorillaTagger.OnPlayerSpawned(() =>
         {
@@ -271,7 +275,7 @@ public class Plugin : BaseUnityPlugin
         PlayerPrefFlagButton oldButton = clone.GetComponent<PlayerPrefFlagButton>();
         GorillaPressableButton newButton = clone.AddComponent<GorillaPressableButton>();
 
-        GameObject textObj = Object.Instantiate(((GorillaPressableButton)oldButton).myTmpText.gameObject);
+        GameObject textObj = Object.Instantiate(((GorillaPressableButton)oldButton).myTmpText.gameObject, clone.transform, false);
         textObj.transform.localPosition = new Vector3(19.398f, -0.6059f, -26.9f);
         textObj.transform.localScale = ((GorillaPressableButton)oldButton).myTmpText.transform.localScale;
         textObj.transform.localRotation = ((GorillaPressableButton)oldButton).myTmpText.transform.localRotation;
@@ -288,6 +292,6 @@ public class Plugin : BaseUnityPlugin
             StartCoroutine(SetStandsPageForCategoryNextFrame(_currentSelectedCategory, _categoryPage[_currentSelectedCategory]));
         };
 
-        ObjectExtensions.Destroy(oldButton);
+        Object.Destroy(oldButton);
     }
 }
