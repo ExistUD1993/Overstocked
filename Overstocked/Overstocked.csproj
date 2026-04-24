@@ -1,9 +1,125 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LocalAssemblyPath>$(MSBuildProjectDirectory)\assemblies</LocalAssemblyPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+        <PostBuildEvent>
+            copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\BepInEx\plugins\$(TargetFileName)"
+        </PostBuildEvent>
     </PropertyGroup>
 
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>$(LocalAssemblyPath)\0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(LocalAssemblyPath)\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="BepInEx">
+            <HintPath>$(LocalAssemblyPath)\BepInEx.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="BepInEx.Harmony">
+            <HintPath>$(LocalAssemblyPath)\BepInEx.Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Mono.Security">
+            <HintPath>$(LocalAssemblyPath)\Mono.Security.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Photon3Unity3D">
+            <HintPath>$(LocalAssemblyPath)\Photon3Unity3D.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="PhotonRealtime">
+            <HintPath>$(LocalAssemblyPath)\PhotonRealtime.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="PhotonUnityNetworking">
+            <HintPath>$(LocalAssemblyPath)\PhotonUnityNetworking.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="PhotonUnityNetworking.Utilities">
+            <HintPath>$(LocalAssemblyPath)\PhotonUnityNetworking.Utilities.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="PhotonVoice">
+            <HintPath>$(LocalAssemblyPath)\PhotonVoice.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="PhotonVoice.API">
+            <HintPath>$(LocalAssemblyPath)\PhotonVoice.API.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="PhotonVoice.PUN">
+            <HintPath>$(LocalAssemblyPath)\PhotonVoice.PUN.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.EnterpriseServices">
+            <HintPath>$(LocalAssemblyPath)\System.EnterpriseServices.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.ServiceModel.Internals">
+            <HintPath>$(LocalAssemblyPath)\System.ServiceModel.Internals.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.InputSystem">
+            <HintPath>$(LocalAssemblyPath)\Unity.InputSystem.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.Mathematics">
+            <HintPath>$(LocalAssemblyPath)\Unity.Mathematics.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.Timeline">
+            <HintPath>$(LocalAssemblyPath)\Unity.Timeline.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Unity.XR.Interaction.Toolkit">
+            <HintPath>$(LocalAssemblyPath)\Unity.XR.Interaction.Toolkit.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.AssetBundleModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.AudioModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.CoreModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.PhysicsModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.UI.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.UIModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.XRModule">
+            <HintPath>$(LocalAssemblyPath)\UnityEngine.XRModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
 </Project>
