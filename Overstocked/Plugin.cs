@@ -203,9 +203,9 @@ public class Plugin : BaseUnityPlugin
 
         GridLayoutGroup grid = container.AddComponent<GridLayoutGroup>();
         grid.cellSize = new Vector2(0.2f, 0.13f);
-        grid.childAlignment = (TextAnchor)4;
+        grid.childAlignment = TextAnchor.MiddleCenter;
         grid.startCorner = GridLayoutGroup.Corner.LowerLeft;
-        grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        grid.constraint = GridLayoutGroup.Constraint.FixedRowCount;
 
         foreach (var set in _allItemsWithPrice.OrderByDescending(kvp => kvp.Value.Count).Reverse())
         {

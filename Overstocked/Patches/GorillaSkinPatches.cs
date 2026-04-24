@@ -7,7 +7,7 @@ namespace Overstocked.Patches;
 [HarmonyPatch(typeof(GorillaSkin))]
 public class GorillaSkinPatches
 {
-    [HarmonyPatch("ApplyToRig")]
+    [HarmonyPatch(nameof(GorillaSkin.ApplyToRig))]
     [HarmonyPrefix]
     public static bool ApplyToRigPatch(VRRig rig) => !GTExt.IsNull((Object)rig);
 }
