@@ -10,6 +10,7 @@
         <PostBuildEvent>
             copy "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Gorilla Tag\BepInEx\plugins\$(TargetFileName)"
         </PostBuildEvent>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -121,5 +122,9 @@
             <HintPath>$(LocalAssemblyPath)\UnityEngine.XRModule.dll</HintPath>
             <Private>false</Private>
         </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="bitmotte.com.Unity.TextMeshPro" Version="2022.3.29" />
     </ItemGroup>
 </Project>
