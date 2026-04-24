@@ -2,13 +2,9 @@
 using GorillaExtensions;
 using GorillaNetworking;
 using GorillaNetworking.Store;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -150,19 +146,22 @@ public class Plugin : BaseUnityPlugin
         if (scene.name != "City")
             return;
 
-        if (!GTExt.TryFindByPath(scene, "City_Pretty/CosmeticsRoomAnchor/nicegorillastore_prefab/DressingRoom_Furniture_Prefab/mirror sofa/", ref _mirrorSofa!, false) ||
-            !GTExt.TryFindByPath(scene, "City_Pretty/CosmeticsRoomAnchor/nicegorillastore_prefab/DressingRoom_Mirrors_Prefab/TryOnConsole/", out Transform parent, false))
+        Transform mirrorSofa;
+        Transform tryOnConsole;
+
+        if (!scene.TryFindByPath("City_Pretty/CosmeticsRoomAnchor/nicegorillastore_prefab/DressingRoom_Furniture_Prefab/mirror sofa/", out mirrorSofa, false) ||
+            !scene.TryFindByPath("City_Pretty/CosmeticsRoomAnchor/nicegorillastore_prefab/DressingRoom_Mirrors_Prefab/TryOnConsole/", out tryOnConsole, false))
         {
             Logger.LogError("Could not find mirror sofa or TryOnConsole");
             return;
         }
 
-        _mirrorSofa = _mirrorSofa;
+        _mirrorSofa = mirrorSofa;
         LoadHeads(_mirrorSofa);
         SetUpCategoryButtons(_mirrorSofa);
         SetUpPageButtons(_mirrorSofa);
         SetUpText(_mirrorSofa);
-        SetUpClearCartButton(parent);
+        SetUpClearCartButton(tryOnConsole);
     }
 
     private void LoadHeads(Transform parent)
@@ -200,7 +199,7 @@ public class Plugin : BaseUnityPlugin
 
         GridLayoutGroup grid = container.AddComponent<GridLayoutGroup>();
         grid.cellSize = new Vector2(0.2f, 0.13f);
-        grid.childAlignment = TextAnchor.MiddleCenter;
+        grid.childAlignment = (TextAnchor)4;
         grid.startCorner = GridLayoutGroup.Corner.LowerLeft;
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
 
